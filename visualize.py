@@ -53,7 +53,11 @@ def clipped(line, w, h):
             x = -(b * y + c) / a
             if 0 <= x < w:
                 pts.append((x, y))
-    return pts[:2]
+    unique = []
+    for point in pts:
+        if not any(np.allclose(point, other, rtol=0, atol=1e-9) for other in unique):
+            unique.append(point)
+    return unique[:2]
 
 
 def epilines(a, b, p, q, f, path, seed=42):

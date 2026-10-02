@@ -31,7 +31,7 @@ def detect(gray, cfg):
         blocked[y - rad : y + rad + 1, x - rad : x + rad + 1] = True
         if len(pts) == cfg['max_keypoints']:
             break
-    return np.array(pts, dtype=float)
+    return np.array(pts, dtype=float).reshape(-1, 2)
 
 
 def describe(gray, points, cfg):
